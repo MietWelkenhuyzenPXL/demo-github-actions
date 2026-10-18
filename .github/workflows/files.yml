@@ -1,0 +1,15 @@
+name: Files
+on:
+  workflow_dispatch:
+
+jobs:
+  new-directory:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Make directory
+      run: mkdir test
+    - name: Add text file to new directory
+      run: echo 'Dit is een korte tekst' > test/textfile
+    - name: Show test output
+      run: cat test/textfile
+    
