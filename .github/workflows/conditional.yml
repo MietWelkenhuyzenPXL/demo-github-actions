@@ -1,0 +1,30 @@
+name: Conditional
+on: 
+  workflow_dispatch: 
+    inputs: 
+      environment:        # zelf gekozen naam van de input
+        description: 'Kies een omgeving'
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env: 
+      ENVIRONMENT: ${{github.event.inputs.environment}}
+    steps:
+      - name: Check for production environment
+        if: env.ENVIRONMENT == 'production'      # $ENVIRONMENT werkt hier niet - GitHub-expressie vs Bash
+        run: echo "Deploying to production!"
+      - name: Check for development or staging environment
+        if: env.ENVIRONMENT == 'development' || env.ENVIRONMENT == 'staging'
+        run: echo "Running in test mode"
+      - name: Display chosen environment
+        run: |
+          echo "Gekozen omgeving: $ENVIRONMENT"
+    
+    
