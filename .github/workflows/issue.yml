@@ -1,0 +1,21 @@
+name: "Issue"
+on:
+  issues: 
+    types:
+      - opened
+
+jobs:
+  Issue:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Toon issuetitel
+      env:
+        TITEL: ${{github.event.issue.title}}
+      run: |
+        echo 'Titel: $TITEL'
+    - name: Toon issuebody
+      env:
+        BODY: ${{github.event.issue.body}}
+      run: | 
+        echo 'Body: $BODY'
+      
