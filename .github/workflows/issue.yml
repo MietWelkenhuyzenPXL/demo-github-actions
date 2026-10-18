@@ -12,10 +12,10 @@ jobs:
       env:
         TITEL: ${{github.event.issue.title}}
       run: |
-        echo 'Titel: $TITEL'
+        echo "Titel: $TITEL"
     - name: Toon issuebody
       env:
         BODY: ${{github.event.issue.body}}
       run: | 
-        echo 'Body: $BODY'
+        echo "Body: $BODY"
       
